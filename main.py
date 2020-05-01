@@ -14,7 +14,7 @@ CORS(app, supports_credentials=True)
 def hello_world():
     input = request.json
     s = input['text']
-    a = Analyzer(token_filters=[ POSKeepFilter(['名詞','動詞']) ])
+    a = Analyzer(token_filters=[ POSKeepFilter(['名詞','動詞','副詞','形容詞']) ])
     t = Tokenizer()
     res =[]
     for token in a.analyze(s):
@@ -22,4 +22,4 @@ def hello_world():
     return jsonify(res)
  
 if __name__ == '__main__':
-    app.run()
+    app.run(host='127.0.0.1', port=8080, debug=True)
